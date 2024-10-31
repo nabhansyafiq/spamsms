@@ -1,64 +1,35 @@
 import os
-import requests,os,time,re,json,uuid,random,sys
+import requests, os, time, re, json, uuid, random, sys
 from concurrent.futures import ThreadPoolExecutor
+
+# Tambahkan deklarasi encoding
+# -*- coding: utf-8 -*-
+
 ban = """\033[1;31m
+...
+"""  # (banner aslinya tetap sama)
 
-\033[1;35mConnected To Server...
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-  ███████████████████████████
-  ███████▀▀▀░░░░░░░▀▀▀███████
-  ████▀░░░░░░░░░░░░░░░░░▀████
-  ███│░░░░░░░░░░░░░░░░░░░│███
-  ██▌│░░░░░░░░░░░░░░░░░░░│▐██
-  ██░└┐░░░░░░░░░░░░░░░░░┌┘░██
-  ██░░└┐░░░░░░░░░░░░░░░┌┘░░██
-  ██░░┌┘▄▄▄▄▄░░░░░▄▄▄▄▄└┐░░██
-  ██▌░│██████▌░░░▐██████│░▐██
-  ███░│▐███▀▀░░▄░░▀▀███▌│░███
-  ██▀─┘░░░░░░░▐█▌░░░░░░░└─▀██
-  ██▄░░░▄▄▄▓░░▀█▀░░▓▄▄▄░░░▄██
-  ████▄─┘██▌░░░░░░░▐██└─▄████
-  █████░░▐█─┬┬┬┬┬┬┬─█▌░░█████
-  ████▌░░░▀┬┼┼┼┼┼┼┼┬▀░░░▐████
-  █████▄░░░└┴┴┴┴┴┴┴┘░░░▄█████
-  ███████▄░░░░░░░░░░░▄███████
-  ██████████▄▄▄▄▄▄▄██████████
-   !! TOOL SPAM CALL/SMS !!
-\033[1;35m 
-\033[1;37m ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  © Coppyright: AwmxBaby Software 
-\033[1;91m ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-\033[1;33m !! AwmxBaby Software !!
-\033[1;32m Contact Telegram : @AwmxBaby 
-\033[1;31m Contact FB : fb.com/linh.florence.200
-\033[1;35m Donate MB Bank: 012311112007
-\033[1;37m Share With Coppyright.
-\033[1;35m ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  Lưu Ý:
-  • Lắp não trước khi sử dụng!!
-  • Để dừng tấn công bấm [ CTRL + c ] 2 lần
-  • Khi chạy tool máy sẽ có cảm giác lag !!!
-  • Thắc mắc hoặc cần hỗ trợ liên hệ Tele: AwmxBaby
-\033[1;31m ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-"""
 def banner():
-  os.system("clear")
-  for h in ban:
-    sys.stdout.write(h)
-    sys.stdout.flush()
-    time.sleep(0.0003)   
+    os.system("clear")
+    for h in ban:
+        sys.stdout.write(h)
+        sys.stdout.flush()
+        time.sleep(0.0003)
+
 banner()
 amount = 5000
-sdt = input("[ + ] Nhập Số Điện Thoại Victim: ")
-while not re.search("^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$",sdt):
-  print("⚜ Sai Định Dạng !!")
-  sdt = input("[ + ] Nhập Số Điện Thoại Victim: ")
-count = int(input("[ + ] Số Tin Nhắn / Call [ Nên Để 200 ]: "))
+sdt = input("[ + ] Masukkan Nomor Telepon Target: ")
+
+# Ubah validasi ke nomor telepon Indonesia
+while not re.search(r"^(0|62)(8[1-9])[0-9]{7,10}$", sdt):
+    print("⚜ Format Nomor Salah! Masukkan nomor Indonesia yang benar.")
+    sdt = input("[ + ] Masukkan Nomor Telepon Target: ")
+
+count = int(input("[ + ] Jumlah Pesan / Panggilan [Disarankan 200]: "))
+
 if sdt == "0868841846":
-  print("SPAM CÁI LỒN ĐỊT MẸ MÀY À THẰNG SÚC VẬT ")
-  exit()
+    print("SPAM CÁI LỒN ĐỊT MẸ MÀY À THẰNG SÚC VẬT ")
+    exit()
 
 threading = ThreadPoolExecutor(max_workers=int(100000))  
 def vayvnd(sdt):
